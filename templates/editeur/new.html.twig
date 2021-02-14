@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Editeur{% endblock %}
+
+{% block body %}
+    <h1 class="panel-heading">Créer un nouvel éditeur</h1></br>
+
+    {{ include('editeur/_form.html.twig', {'button_label': 'Valider'}) }}
+
+    <a href="{{ path('editeur_index') }}"><span class="btn btn-primary"><i class="fa fa-backward"></i>&nbsp;Retour</span></a>
+{% endblock %}

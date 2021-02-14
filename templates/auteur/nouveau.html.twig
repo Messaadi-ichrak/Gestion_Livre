@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Auteur{% endblock %}
+
+{% block body %}
+    <h1 class="panel-heading">Créer un nouvel Auteur</h1></br>
+
+    {{ include('auteur/_form.html.twig',{'button_label': 'Valider'}) }}
+
+    <a href="{{ path('auteur_index') }}"><span class="btn btn-primary"><i class="fa fa-backward"></i>&nbsp;Retour</span> </a>
+{% endblock %}

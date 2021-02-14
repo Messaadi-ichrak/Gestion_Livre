@@ -1,0 +1,434 @@
+{% block stylesheets %}
+    <meta charset="utf-8">
+
+    <!--====== Title ======-->
+    <title>Ma Bibilothéque</title>
+
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--====== Favicon Icon ======-->
+    <link rel="shortcut icon" href="{{ asset('client/images/favicon.png') }}" type="image/png">
+
+    <!--====== Animate CSS ======-->
+    <link rel="stylesheet" href="{{ asset('client/css/animate.css') }}">
+
+    <!--====== Line Icons CSS ======-->
+    <link rel="stylesheet" href="{{ asset('client/css/LineIcons.2.0.css') }}">
+
+    <!--====== Bootstrap CSS ======-->
+    <link rel="stylesheet" href="{{ asset('client/css/bootstrap-5.0.5-alpha.min.css') }}">
+
+    <!--====== Style CSS ======-->
+    <link rel="stylesheet" href="{{ asset('client/css/style.css') }}">
+
+{% endblock %}
+
+{% block body %}
+    <!--[if IE]>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+    <![endif]-->
+
+    <!--====== PRELOADER PART START ======-->
+
+    <div class="preloader">
+        <div class="loader">
+            <div class="ytp-spinner">
+                <div class="ytp-spinner-container">
+                    <div class="ytp-spinner-rotator">
+                        <div class="ytp-spinner-left">
+                            <div class="ytp-spinner-circle"></div>
+                        </div>
+                        <div class="ytp-spinner-right">
+                            <div class="ytp-spinner-circle"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--====== PRELOADER PART ENDS ======-->
+
+    <!--====== HEADER PART START ======-->
+
+    <header class="header_area">
+        <div id="header_navbar" class="header_navbar">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-xl-12">
+                        <nav class="navbar navbar-expand-lg">
+                            <a class="navbar-brand" href="{{ path('home') }}">
+                                <img id="logo" src="{{ asset('client/images/logo.png') }}" alt="Logo">
+                            </a>
+                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                <span class="toggler-icon"></span>
+                                <span class="toggler-icon"></span>
+                                <span class="toggler-icon"></span>
+                            </button>
+                            <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
+                                <ul id="nav" class="navbar-nav ml-auto">
+                                    <li class="nav-item">
+                                        <a class="page-scroll" href="#home">Accueil</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="page-scroll" href="#livres" >Livres</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="dropdown-toggle" data-toggle="dropdown" href="#categories" aria-expanded="false">Categories</a>
+                                        <ul  class="dropdown-menu dropdown-messages" >
+                                            {% for categorie in categories %}
+                                            <li>
+                                                <a href="{{ path('afficher_categorie', {'id' : categorie.id }) }}" class="header-btn btn-hover "> <strong>{{ categorie.designation }}</strong> </a>
+                                            </li>
+                                            {% endfor %}
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="dropdown-toggle" data-toggle="dropdown" href="#editeurs" aria-expanded="false">Editeurs</a>
+                                        <ul  class="dropdown-menu dropdown-messages" >
+                                            {% for editeur in editeurs %}
+                                                <li>
+                                                    <a href="{{ path('afficher_editeur', {'id' : editeur.id }) }}" class="header-btn btn-hover "> <strong>{{ editeur.nomEditeur }}</strong> </a>
+                                                </li>
+                                            {% endfor %}
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Auteurs</a>
+                                        <ul  class="dropdown-menu dropdown-messages" >
+                                            {% for auteur in auteurs %}
+                                                <li>
+                                                    <a href="{{ path('afficher_auteur', {'id' : auteur.id }) }}" class="header-btn btn-hover"> <strong>{{ auteur.prenom }} {{ auteur.nom  }}</strong> </a>
+                                                </li>
+                                            {% endfor %}
+                                        </ul>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="page-scroll" href="#contact">Contact</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="header-btn btn-hover" href="#livres">Commencer</a>
+                                    </li>
+                                </ul>
+                            </div> <!-- navbar collapse -->
+                        </nav> <!-- navbar -->
+                    </div>
+                </div> <!-- row -->
+            </div> <!-- container -->
+        </div> <!-- header navbar -->
+    </header>
+
+    <!--====== HEADER PART ENDS ======-->
+
+    <!--====== HERO PART START ======-->
+    <section id="home" class="hero-area bg_cover">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-xl-5 offset-xl-7 col-lg-8 offset-lg-2 col-md-10 offset-md-1">
+                    <div class="hero-content">
+                        <h2 class="mb-30 wow fadeInUp" data-wow-delay=".2s">La première bibliothèque en ligne</h2>
+                        <p class="wow fadeInUp" data-wow-delay=".4s">Si vous n'avez pas assez de temps pour visiter la bibliothèque et acheter votre livre préféré !!
+                            Ma bibliothèque est là pour vous, vous trouverez tous les livres anciens et nouveaux du monde entier</p>
+                        <div class="hero-btns">
+                            <a href="#livres" class="main-btn wow fadeInUp" data-wow-delay=".6s"> Découvrir Plus</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-left">
+            <img src="{{ asset('client/images/hero.jpg') }}" alt="">
+            <img src="{{ asset('client/images/dot-shape.svg') }}" alt="" class="shape">
+        </div>
+    </section>
+    <!--====== HERO PART END ======-->
+
+    <!--====== SKILL PART START ======-->
+    <section id="categories" class="skill-area pt-170">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-6 col-lg-7 col-md-10 mx-auto">
+                    <div class="section-title text-center">
+                        <h2 class="mb-15 wow fadeInUp" data-wow-delay=".2s">Nos Catégories</h2>
+                        <p class="wow fadeInUp" data-wow-delay=".4s">Les catégories les plus vues par la plupart des visiteurs</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                {%  for cat in categories %}
+                <div class="col-xl-4 col-lg-4 col-md-6">
+                    <div class="single-skill wow fadeInUp" data-wow-delay=".2s">
+                        <div class="skill-icon">
+                            <i class="lni lni-add-files"></i>
+                        </div>
+                        <div class="skill-content">
+                            <h4>{{ cat.designation  }}</h4>
+                            <p>{{ cat.description }}</p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+
+            </div>
+        </div>
+    </section>
+    <!--====== SKILL PART ENDS ======-->
+
+    <!--====== COURSES PART START ======-->
+    <section id="livres" class="course-area pt-140 pb-170">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-6 col-lg-7 col-md-10 mx-auto">
+                    <div class="section-title text-center mb-50">
+                        <h2 class="mb-15 wow fadeInUp" data-wow-delay=".2s">Les Livres populaires</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-30">
+                {% for livre in livres %}
+                <div class="col-xl-4 col-lg-4 col-md-6">
+                    <div class="single-course wow fadeInUp" data-wow-delay=".2s">
+                        <div class="course-img">
+                            <a href="{{ path('afficher_livre', {'id' : livre.id }) }}">
+                                <img src="{{ asset('client/images/book.jpg') }}" alt="">
+                            </a>
+                        </div>
+                        <div class="course-info">
+                            <h4><a href="{{ path('afficher_livre', {'id' : livre.id }) }}">{{ livre.titre }}</a></h4>
+                            <div class="course-meta">
+                                <div class="meta-item">
+                                    <i class="lni lni-user"></i>
+                                    <span>3.5k</span>
+                                </div>
+                                <div class="meta-item">
+                                    <i class="lni lni-eye"></i>
+                                    <span>12k</span>
+                                </div>
+                                <div class="meta-item">
+                                    <i class="lni lni-star"></i>
+                                    <span>5.0</span>
+                                </div>
+                                <div class="price">
+                                    <span>$99.00</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    <!--====== COURSES PART ENDS ======-->
+
+
+    <!--====== WELCOME PART START ======-->
+    <section class="welcome-area">
+
+    </section>
+    <!--====== WELCOME PART ENDS ======-->
+
+    <!--====== CATEGORIES PART START
+    <section class="categories-area pt-170 pb-170">
+
+    </section>
+     CATEGORIES PART ENDS ======-->
+
+
+
+
+    <!--====== CONTACT PART START ======-->
+    <section id="contact" class="contact-area">
+        <div class="map-bg">
+            <img src="{{ asset('client/images/map-bg.svg') }}" alt="">
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-5 col-lg-5">
+                    <div class="section-title">
+                        <h2 class="wow fadeInUp" data-wow-delay=".2s">Nous contacter</h2>
+                    </div>
+                    <div class="contact-content">
+                        <h3>Rejoignez-nous</h3>
+                        <h4><a href="javascript:void(0)">000-2222-5555</a></h4>
+                        <h4><a href="javascript:void(0)">hello@gmail.com</a></h4>
+                    </div>
+                </div>
+                <div class="col-xl-7 col-lg-7">
+                    <div class="contact-form-wrapper">
+                        <form action="{{ asset('client/contact.php') }}">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input type="text" placeholder="Nom" name="name" id="name">
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="email" placeholder="Email" name="email" id="email">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <input type="text" placeholder="Objet" name="subject" id="subject">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <textarea name="message" id="message" rows="4" placeholder="Message"></textarea>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 text-right">
+                                    <button class="main-btn btn-hover" type="submit">Envoyer</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--====== CONTACT PART ENDS ======-->
+
+    <!--====== FOOTER PART START ======-->
+    <footer id="footer" class="footer-area pt-170">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-3 col-lg-3 col-md-6">
+                    <div class="footer-widget">
+                        <a href="#" class="logo d-blok">
+                            <h5>Qui somme nous ?</h5>
+                        </a>
+                        <p>Ma bibliothèque est une bibliothèque numérique qui répond à tous vos besoins en ligne.
+                            si vous voulez profiter de votre livre préféré et économiser votre temps et votre argent en même temps, vous devriez donc nous rendre visite .</p>
+                    </div>
+                </div>
+                <div class="col-xl-2 col-lg-2 offset-xl-1 offset-lg-1 col-md-6">
+                    <div class="footer-widget">
+                        <h5>Liens rapides</h5>
+                        <ul>
+                            <li><a href="javascript:void(0)">Accueil</a></li>
+                            <li><a href="javascript:void(0)">Livres</a></li>
+                            <li><a href="javascript:void(0)">Catégories</a></li>
+                            <li><a href="javascript:void(0)">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-xl-2 col-lg-2 col-md-6">
+                    <div class="footer-widget">
+                        <h5>Livres</h5>
+                        <ul>
+                            <li><a href="javascript:void(0)">Catégorie</a></li>
+                            <li><a href="javascript:void(0)">Auteur</a></li>
+                            <li><a href="javascript:void(0)">Editeur</a></li>
+                            <li><a href="javascript:void(0)">Prix</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-xl-3 col-lg-3 col-md-6">
+                    <div class="footer-widget">
+                        <h5>Nous contacter</h5>
+                        <ul>
+                            <li><p>Téléphone: +884-9273-3867</p></li>
+                            <li><p>Email: hello@gmail.com</p></li>
+                            <li><p>Addresse: Sfax<br> Tunisie</p></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-credit">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="copy-right text-center text-md-left">
+                            <p>Designed and Developed by <a href="https://uideck.com" rel="nofollow">UIdeck</a></p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="footer-social">
+                            <ul class="d-flex justify-content-md-end justify-content-center">
+                                <li><a href="javascript:void(0)"><i class="lni lni-facebook-filled"></i></a></li>
+                                <li><a href="javascript:void(0)"><i class="lni lni-twitter-filled"></i></a></li>
+                                <li><a href="javascript:void(0)"><i class="lni lni-instagram-filled"></i></a></li>
+                                <li><a href="javascript:void(0)"><i class="lni lni-linkedin-original"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--====== FOOTER PART ENDS ======-->
+
+    <!--====== BACK TOP TOP PART START ======-->
+    <a href="#" class="back-to-top btn-hover"><i class="lni lni-chevron-up"></i></a>
+    <!--====== BACK TOP TOP PART ENDS ======-->
+
+{% endblock %}
+{% block javascripts %}
+
+    <!--====== Bootstrap js ======-->
+    <script src="{{ asset('client/js/bootstrap.bundle-5.0.0.alpha-min.js') }}"></script>
+
+    <!--====== wow js ======-->
+    <script src="{{ asset('client/js/wow.min.js') }}"></script>
+
+    <!--====== Main js ======-->
+    <script src="{{ asset('client/js/main.js') }}"></script>
+{% endblock %}
+{% block php %}
+
+    <script>
+
+        // Get the navbar
+
+        // for menu scroll
+        var pageLink = document.querySelectorAll('.page-scroll');
+
+        pageLink.forEach(elem => {
+            elem.addEventListener('click', e => {
+                e.preventDefault();
+                document.querySelector(elem.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth',
+                    offsetTop: 1 - 60,
+                });
+            });
+        });
+
+        // section menu active
+        function onScroll(event) {
+            var sections = document.querySelectorAll('.page-scroll');
+            var scrollPos = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+
+            for (var i = 0; i < sections.length; i++) {
+                var currLink = sections[i];
+                var val = currLink.getAttribute('href');
+                var refElement = document.querySelector(val);
+                var scrollTopMinus = scrollPos + 73;
+                if (refElement.offsetTop <= scrollTopMinus && (refElement.offsetTop + refElement.offsetHeight > scrollTopMinus)) {
+                    document.querySelector('.page-scroll').classList.remove('active');
+                    currLink.classList.add('active');
+                } else {
+                    currLink.classList.remove('active');
+                }
+            }
+        };
+
+        window.document.addEventListener('scroll', onScroll);
+
+
+        //===== close navbar-collapse when a  clicked
+        let navbarToggler = document.querySelector(".navbar-toggler");
+        var navbarCollapse = document.querySelector(".navbar-collapse");
+
+        document.querySelectorAll(".page-scroll").forEach(e =>
+            e.addEventListener("click", () => {
+                navbarToggler.classList.remove("active");
+                navbarCollapse.classList.remove('show')
+            })
+        );
+        navbarToggler.addEventListener('click', function() {
+            navbarToggler.classList.toggle("active");
+        });
+
+    </script>
+{% endblock %}
